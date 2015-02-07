@@ -84,7 +84,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-BUNNY_URL = 'http://api.voicebunny.com'
+BUNNY_URL = 'https://api.voicebunny.com'
 HACKERNEWS_URL = 'http://hacker-news.firebaseio.com'
 BUNNY_API_ID = '43560'
 BUNNY_API_KEY = "b9c04cf06b2f2c1366c8f9f5e3dc0e92"

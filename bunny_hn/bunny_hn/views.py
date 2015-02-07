@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 hacker_news_api = HackerNewsAPI(settings.HACKERNEWS_URL)
 bunny_api = BunnyAPI(settings.BUNNY_URL, settings.BUNNY_API_ID, settings.BUNNY_API_KEY)
+print settings.BUNNY_URL, settings.BUNNY_API_ID, settings.BUNNY_API_KEY
 
 
 def home(request):
@@ -32,11 +33,11 @@ def getStoryAudio(request, story_id):
         story.save()
     except ObjectDoesNotExist:
         data = request.POST
-        project = bunny_api.sendProject(story_id, data["title"], test=0)
+        project = bunny_api.sendProject(story_id, data['title'], test=0)
         bunny_project_id = project['id']
         audio_url = project['reads'][0]['urls']['part001']['original']
         status = project['reads'][0]['status']
-        story = Story(story_id, data["by"], data["score"], data["title"], data["url"],
+        story = Story(story_id, data['by'], data['score'], data['title'], data['url'],
                       bunny_project_id, audio_url, status)
         story.save()
 

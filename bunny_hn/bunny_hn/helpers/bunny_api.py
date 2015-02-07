@@ -13,9 +13,9 @@ class BunnyAPI:
         self.api_key = api_key
 
     def sendProject(self, title, script, test=1):
-        req = requests.post(self.url+'/projects/addSpeedy',
+        req = requests.post(self.url + '/projects/addSpeedy',
                             data={'title': str(title) + 'bunny_hn',
-                                  'script': script},
+                                  'script': str(script)},
                             auth=HTTPBasicAuth(self.api_id, self.api_key), verify=False)
         logger.info(req.text)
         print req.text
