@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <h1>Id: {{ story.story_id }}</h1>
+        <h2>Author: {{ story.by }} </h2>
+        <h2>Score: {{ story.score }} </h2>
+        <h2><a href="{{ story.url }}"><span> {{ story.title }} </span></a></h2>
+        <h2>Score: {{ story.status }} </h2>
+        <audio controls>
+            <source src="{{ story.audio_url }}" type="audio/mpeg">
+        </audio>
+    </body>
+</html>

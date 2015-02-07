@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <h1>Hacker News</h1>
+        <ul>
+            {% for story in stories %}
+                <li>
+                    <p>Id: {{ story.story_id }}</p>
+                    <p>Author: {{ story.by }}</p>
+                    <p>Score: {{ story.score }}</p>
+                    <a href="{{ story.url }}"><span> {{ story.title }} </span></a>
+
+                    <form action="{% url 'hear_story' story.story_id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="by" value="{{ story.by }}" />
+                        <input type="hidden" name="score" value="{{ story.score }}" />
+                        <input type="hidden" name="url" value="{{ story.url }}" />
+                        <input type="hidden" name="title" value="{{ story.title }}" />
+                        <input type="submit" value="HEAR"/>
+                    </form>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
