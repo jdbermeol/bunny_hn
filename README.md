@@ -5,7 +5,7 @@ Web app to connect voice bunny and hacker news web page.
 
 Register on voicebunny and get some credit. 
 Then go to http://voicebunny.com/api-for-voice-overs/token and copy the API id 
-and token to the bunnyreddit/settings.py file variables:
+and token to the bunny_hn/settings.py file variables:
 
 BUNNY_API_ID
 BUNNY_API_KEY
