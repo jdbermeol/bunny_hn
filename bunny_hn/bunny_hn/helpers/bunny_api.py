@@ -15,10 +15,10 @@ class BunnyAPI:
     def sendProject(self, title, script, test=1):
         req = requests.post(self.url + '/projects/addSpeedy',
                             data={'title': str(title) + 'bunny_hn',
-                                  'script': str(script)},
+                                  'script': str(script), 'test': str(test)},
                             auth=HTTPBasicAuth(self.api_id, self.api_key), verify=False)
+
         logger.info(req.text)
-        print req.text
         data = simplejson.loads(req.text)
 
         if('project' in data):

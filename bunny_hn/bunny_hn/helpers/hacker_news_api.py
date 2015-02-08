@@ -28,7 +28,7 @@ class HackerNewsAPI:
             attempts_count += 1
 
         if(error):
-            raise Exception("Could not get trending")
+            raise Exception("Could not get top stories")
         return data[:number]
 
     def getStory(self, story_id):

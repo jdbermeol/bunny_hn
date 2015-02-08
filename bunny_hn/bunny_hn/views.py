@@ -12,11 +12,10 @@ logger = logging.getLogger(__name__)
 
 hacker_news_api = HackerNewsAPI(settings.HACKERNEWS_URL)
 bunny_api = BunnyAPI(settings.BUNNY_URL, settings.BUNNY_API_ID, settings.BUNNY_API_KEY)
-print settings.BUNNY_URL, settings.BUNNY_API_ID, settings.BUNNY_API_KEY
 
 
 def home(request):
-    stories_id = hacker_news_api.getTopStories(1)
+    stories_id = hacker_news_api.getTopStories(5)
     stories = []
     for story_id in stories_id:
         stories.append(hacker_news_api.getStory(story_id))
@@ -33,7 +32,7 @@ def getStoryAudio(request, story_id):
         story.save()
     except ObjectDoesNotExist:
         data = request.POST
-        project = bunny_api.sendProject(story_id, data['title'], test=0)
+        project = bunny_api.sendProject(story_id, data['title'])
         bunny_project_id = project['id']
         audio_url = project['reads'][0]['urls']['part001']['original']
         status = project['reads'][0]['status']
@@ -44,9 +43,9 @@ def getStoryAudio(request, story_id):
 
 def getStory(request, story_id):
     getStoryAudio(request, story_id)
-    return HttpResponseRedirect(reverse('story', args=(story_id)))
+    return HttpResponseRedirect(reverse('show_story', args=(story_id,)))
 
 
 def showStory(request, story_id):
-    story = get_object_or_404(Story, story_id)
-    return render(request, 'story.html', {'story': story})
+    story = get_object_or_404(Story, pk=story_id)
+    return render(request, 'show_story.html', {'story': story})
